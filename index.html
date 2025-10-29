@@ -1,57 +1,317 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Olá, Mundo! - Economia Azul</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom right, #0077be, #00c4cc);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.3em;
-    }
-
-    p {
-      font-size: 1.3em;
-      max-width: 600px;
-      line-height: 1.6;
-    }
-
-    .box {
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.9em;
-      color: #d0f0f7;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Capital - Lançamento Oficial</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 </head>
 <body>
-  <div class="box">
-    <h1>Olá, Mundo!</h1>
-    <p>Bem-vindo ao nosso projeto sobre <strong>Economia Azul</strong> — uma abordagem sustentável que valoriza os recursos dos oceanos para o desenvolvimento econômico, geração de empregos e proteção ambiental.</p>
-  </div>
-  <footer>
-    © 2025 - Projeto Economia Azul
-  </footer>
+
+<header>
+    <div class="container">
+        <h1 class="logo">Blue Capital</h1>
+
+        <div id="main-menu" class="main-menu">
+            <nav>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#livro-section">O Livro</a></li>
+                    <li><a href="#sobre-section">O Autor</a></li>
+                    <li><a href="#map-section">Leitores</a></li>
+                </ul>
+            </nav>
+            <div class="language-selector">
+                <button id="lang-btn"><i class="fas fa-globe"></i></button>
+                <div id="lang-dropdown" class="language-dropdown">
+                    <a href="#">Português (BR)</a>
+                    <a href="#">English (US)</a>
+                    <a href="#">中文 (简体)</a>
+                    <a href="#">Español</a>
+                </div>
+            </div>
+        </div>
+
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="Abrir menu">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </button>
+    </div>
+</header>
+
+    <main class="hero">
+         <video playsinline autoplay muted loop id="hero-video">
+        <source src="fundo1.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos em HTML5.
+    </video>
+        <div class="hero-content">
+            <h2>O Lançamento que Vai Mudar sua Perspectiva</h2>
+            <h3>Prepare-se para mergulhar em</h3>
+            <h1 class="book-title">Blue Capital</h1>
+
+            <div id="countdown">
+                <div class="time-unit"><span id="days">00</span><small>Dias</small></div>
+                <div class="time-unit"><span id="hours">00</span><small>Horas</small></div>
+                <div class="time-unit"><span id="minutes">00</span><small>Minutos</small></div>
+                <div class="time-unit"><span id="seconds">00</span><small>Segundos</small></div>
+            </div>
+
+            <div class="download-counter">
+                <p>+ de <strong id="downloads">1000</strong> cópias digitais já reservadas!</p>
+            </div>
+
+            <a href="#garantir" class="cta-button">GARANTIR PRÉ-LANÇAMENTO</a>
+        </div>
+    </main>
+
+    <section id="preview-section">
+        <div class="container preview-container">
+            <div class="preview-content">
+                <h2>Sua Jornada Começa Agora!</h2>
+                <p>Obrigado por garantir seu lugar no lançamento de "Blue Capital". Mergulhe nas primeiras páginas e descubra um mundo de estratégias, oceanos de oportunidades e a profundidade de um conhecimento que pode transformar sua realidade.</p>
+                
+                <a href="previa-blue-capital.pdf" class="cta-button download-btn" download>
+                    <i class="fas fa-download"></i> BAIXAR PRÉVIA EM PDF
+                </a>
+            </div>
+            <div class="preview-image">
+                <img src="livrof1.png" alt="Capa do Livro Blue Capital">
+            </div>
+        </div>
+    </section>
+<section id="map-section">
+    <div class="container map-container">
+        <h2>Junte-se a Leitores do Mundo Inteiro</h2>
+        <p class="subtitle">"Blue Capital" está rompendo fronteiras e criando conexões em todos os continentes.</p>
+        
+        <div class="world-map">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/BlankMap-World.png/640px-BlankMap-World.png" alt="Mapa do Mundo">
+            
+            <div class="map-point" style="top: 40%; left: 25%;">
+                <div class="tooltip">Estados Unidos</div>
+            </div>
+            <div class="map-point" style="top: 30%; left: 28%;">
+                <div class="tooltip">Canadá</div>
+            </div>
+            <div class="map-point" style="top: 60%; left: 35%;">
+                <div class="tooltip">Brasil</div>
+            </div>
+            <div class="map-point" style="top: 75%; left: 30%;">
+                <div class="tooltip">Chile</div>
+            </div>
+            <div class="map-point" style="top: 42%; left: 48%;">
+                <div class="tooltip">Portugal</div>
+            </div>
+            <div class="map-point" style="top: 41%; left: 50%;">
+                <div class="tooltip">Espanha</div>
+            </div>
+            <div class="map-point" style="top: 62%; left: 54%;">
+                <div class="tooltip">Angola</div>
+            </div>
+            <div class="map-point" style="top: 42%; left: 88%;">
+                <div class="tooltip">Japão</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="audiobook-section">
+    <video playsinline autoplay muted loop class="section-bg-video">
+        <source src="fundo3.mp4" type="video/mp4">
+    </video>
+
+    <div class="container audiobook-container">
+        <div class="audiobook-player-area">
+            <div class="video-wrapper">
+                <video id="intro-player" controls playsinline>
+                    <source src="intro1br.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div id="intro-nav" class="intro-nav">
+                <button class="intro-nav-btn active" data-index="1" data-key="intro1">Apresentação do livro</button>
+                <button class="intro-nav-btn" data-index="2" data-key="intro2">Apresentação dos Capítulos</button>
+                <button class="intro-nav-btn" data-index="3" data-key="intro3">Corrente de oportunidades</button>
+                <button class="intro-nav-btn" data-index="4" data-key="intro4">A introdução do livro</button>
+            </div>
+        </div>
+
+        <div class="audiobook-content">
+            <h3 data-key="audiobookSubTitle">Introdução Sonora</h3>
+            <h2 data-key="audiobookTitle">Ouça o início da jornada</h2>
+            <p data-key="audiobookDescription">Mergulhe na atmosfera de "Blue Capital" com os capítulos introdutórios narrados. Sinta a maré da história antes mesmo de virar a primeira página.</p>
+            
+            <div id="language-switcher" class="language-switcher">
+                <button class="lang-switch-btn active" data-lang="br">PT-BR</button>
+                <button class="lang-switch-btn" data-lang="en">ENG</button>
+                <button class="lang-switch-btn" data-lang="es">ESP</button>
+                <button class="lang-switch-btn" data-lang="ch">中文</button>
+            </div>
+
+            <a href="capitulo1.html" class="cta-button" data-key="ctaButton">
+                <span class="main-lang">Escutar o primeiro capítulo</span>
+                <span class="sub-lang"></span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<section id="livro-section">
+    <div class="container livro-container">
+        <div class="livro-content">
+            <h2>Palavras viram mundos</h2>
+            <p>
+                "Blue Capital" não é apenas um livro, é uma expedição. Comece com uma premissa e mergulhe em capítulos que criam um universo de realismo inédito, combinando o estilo do cinema com a profundidade da análise fotorealista. Uma jornada surreal e indispensável.
+            </p>
+        </div>
+
+        <div class="livro-gallery-slider">
+            <div class="swiper livro-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="foto1.png" alt="Capa principal do livro Blue Capital">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="Capa aquarte .png" alt="Detalhe artístico do livro">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="Capa pré-lançamento.png" alt="Mockup do livro em um ambiente">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="sugestão capitulos indice.png" alt="Exemplo de página interna do livro">
+                    </div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <section id="sobre-section autor">
+        <div class="container sobre-container">
+            <div class="sobre-content">
+                <h3>Quem é o Autor?</h3>
+                <h2>A mente por trás de "Blue Capital"</h2>
+                <p>
+                Professor Associado e Livre-Docente em Aquicultura e Economia Circular pela UNESP, atua na interseção entre ciência, inovação e sustentabilidade. Com mais de 20 anos de experiência, dedica-se a transformar conhecimento em impacto real, conectando universidades, startups e comunidades para fortalecer a bioeconomia e promover o uso responsável dos recursos naturais. Sua missão é clara: usar ciência e tecnologia para criar um futuro mais justo, sustentável e inteligente.
+                </p>
+            </div>
+
+            <div class="sobre-image-wrapper">
+                <img src="autor.png" alt="Foto do Autor do Livro" class="author-photo">
+                
+                <div class="info-bubble" style="top: 10%; left: -40px;">
+                    <i class="fas fa-ship"></i>
+                    <span>Navegador experiente</span>
+                </div>
+                <div class="info-bubble" style="top: 40%; right: -50px;">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Aquicultura e Economia Circular</span>
+                </div>
+                <div class="info-bubble" style="bottom: 5%; left: -20px;">
+                    <i class="fas fa-pen-fancy"></i>
+                    <span>Escritor apaixonado</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="form-overlay">
+        <div class="overlay-content">
+<button id="close-btn" title="Aguarde para fechar">
+    <span class="icon">&times;</span>
+    <span class="timer">10</span>
+</button>            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScCaOX2PZe57MefARvi8q20xkJoe4LBGWBDRg4TiQ8Bt2qOwQ/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+        </div>
+    </div>
+
+
+    <footer id="main-footer">
+    <div class="footer-background">
+        <video playsinline autoplay muted loop id="footer-video">
+            <source src="footer2.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="container">
+        <div class="footer-top">
+            <div class="footer-col about">
+                <h2>Blue Capital</h2>
+                <p>Uma expedição ao mundo das finanças e estratégia, guiada pela sabedoria do oceano. Mude sua perspectiva.</p>
+            </div>
+            <div class="footer-col links">
+                <h4>Navegue</h4>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#livro-section">O Livro</a></li>
+                    <li><a href="#sobre-section">O Autor</a></li>
+                    <li><a href="#map-section">Leitores</a></li>
+                </ul>
+            </div>
+            <div class="footer-col social">
+                <h4>Siga-nos</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-map">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.445218381836!2d-46.646424285542!3d-23.55238246718476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59a603884399%3A0x134b2771b3e852b7!2sBiblioteca%20M%C3%A1rio%20de%20Andrade!5e0!3m2!1spt-BR!2sbr!4v1678886543210!5m2!1spt-BR!2sbr"
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <div class="footer-logos">
+            <h3>Organização e Apoio</h3>
+            <div class="logo-grid">
+                 <div class="logo-row">
+                    <img src="4.png" alt="Logo Apoiador 1">
+                    <img src="5.png" alt="Logo Apoiador 2">
+                    <img src="6.png" alt="Logo Apoiador 3">
+                    <img src="7.png" alt="Logo Apoiador 4">
+                </div>
+                <div class="logo-row">
+                    <img src="8.png" alt="Logo Apoiador 5">
+                    <img src="9.png" alt="Logo Apoiador 6">
+                    <img src="10.png" alt="Logo Apoiador 7">
+                    <img src="11.png" alt="Logo Apoiador 8">
+                </div>
+                <div class="logo-row">
+                    <img src="12.png" alt="Logo Apoiador 9">
+                    <img src="13.png" alt="Logo Apoiador 10">
+                    <img src="14.png" alt="Logo Apoiador 11">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>COPYRIGHT © 2025 Blue Capital - TODOS OS DIREITOS RESERVADOS</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="script.js"></script>
+
 </body>
 </html>

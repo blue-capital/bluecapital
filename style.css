@@ -1,0 +1,1434 @@
+/* Importa a fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+/* RESET BÁSICO E CONFIGURAÇÕES GERAIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #001f3f, #0074D9, #7FDBFF, #39CCCC);
+    background-size: 400% 400%;
+    animation: gradientBG 20s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ESTILO DO CABEÇALHO */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    z-index: 1000;
+    background-color: rgba(0, 31, 63, 0.5);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #7FDBFF;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* SELETOR DE IDIOMA */
+.language-selector { position: relative; }
+#lang-btn { background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; }
+.language-dropdown { display: none; position: absolute; right: 0; top: 130%; background-color: rgba(0, 31, 63, 0.8); backdrop-filter: blur(10px); border-radius: 5px; overflow: hidden; min-width: 150px; }
+.language-dropdown.show { display: block; }
+.language-dropdown a { display: block; padding: 10px 15px; color: white; text-decoration: none; transition: background-color 0.2s ease; }
+.language-dropdown a:hover { background-color: #0074D9; }
+
+/* ESTILO DO BANNER "HERO" */
+.hero { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 100vh; padding-top: 80px; }
+.hero-content { animation: fadeIn 2s ease-in-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.hero-content h2 { font-size: 1.5em; font-weight: 300; }
+.hero-content h3 { font-size: 1.2em; font-weight: 300; margin-top: 10px; }
+.book-title { font-size: 5em; font-weight: 700; margin: 10px 0 30px; text-shadow: 0 0 15px rgba(0, 0, 0, 0.3); }
+
+/* CONTAGEM REGRESSIVA */
+#countdown { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; }
+.time-unit { background: rgba(255, 255, 255, 0.1); padding: 15px 25px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); }
+.time-unit span { display: block; font-size: 3em; font-weight: 700; }
+.time-unit small { font-size: 0.9em; font-weight: 300; }
+
+/* CONTADOR DE DOWNLOADS */
+.download-counter { margin-bottom: 40px; font-size: 1.2em; }
+.download-counter strong { color: #7FDBFF; font-weight: 700; }
+
+/* BOTÃO DE AÇÃO (CTA) */
+.cta-button { background-color: #7FDBFF; color: #001f3f; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1em; transition: transform 0.3s ease, background-color 0.3s ease; display: inline-block; }
+.cta-button:hover { transform: scale(1.05); background-color: #fff; }
+
+/* ESTILOS DO OVERLAY (MODAL) */
+#form-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); justify-content: center; align-items: center; z-index: 2000; }
+#form-overlay.active { display: flex; }
+.overlay-content { background-color: #0c2c4c; padding: 20px; border-radius: 10px; position: relative; width: 90%; max-width: 640px; transform: scale(0.9); opacity: 0; animation: zoomIn 0.3s forwards; }
+@keyframes zoomIn { to { transform: scale(1); opacity: 1; } }
+#close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; color: #fff; font-size: 2.5em; line-height: 1; cursor: pointer; }
+.overlay-content iframe { border-radius: 5px; width: 100%; }
+
+/* ESTILOS DA SEÇÃO DE PRÉVIA */
+#preview-section { padding: 120px 0; min-height: 80vh; display: flex; align-items: center; background-color: #001f3f; border-top: 2px solid #7FDBFF; }
+.preview-container { display: flex; align-items: center; gap: 60px; }
+.preview-content { flex: 1.5; animation: slideUp 1s ease-out; }
+.preview-image { flex: 1; text-align: center; animation: slideUp 1s ease-out 0.2s; }
+.preview-image img { max-width: 100%; width: 350px; border-radius: 10px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease; }
+.preview-image img:hover { transform: scale(1.03) rotate(2deg); }
+.preview-content h2 { font-size: 2.8em; margin-bottom: 20px; color: #7FDBFF; }
+.preview-content p { font-size: 1.1em; line-height: 1.7; margin-bottom: 30px; }
+.download-btn { font-size: 1.2em; padding: 20px 40px; }
+.download-btn i { margin-right: 10px; }
+
+@keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+
+/* AJUSTES PARA TELAS MENORES (RESPONSIVO) */
+@media (max-width: 768px) {
+    .preview-container { flex-direction: column-reverse; text-align: center; }
+    .preview-image img { margin-bottom: 40px; width: 280px; }
+}
+
+/* ======================================================= */
+/* ESTILOS PARA A NOVA FUNCIONALIDADE (SEÇÃO ESCONDIDA E TIMER) */
+/* ======================================================= */
+
+/* 1. Esconde a seção de prévia por padrão */
+#preview-section {
+    display: none;
+}
+
+/* 2. Classe que o JS vai adicionar para tornar a seção visível */
+#preview-section.visible {
+    display: flex; /* Usamos flex para reativar o layout de colunas */
+}
+
+/* 3. Estilos do botão de fechar e seus estados */
+#close-btn {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    width: 40px; /* Largura fixa */
+    height: 40px; /* Altura fixa */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Deixa o botão redondo */
+    background-color: rgba(0, 0, 0, 0.2);
+}
+#close-btn .timer {
+    font-size: 0.8em; /* Tamanho do número do contador */
+    font-weight: bold;
+}
+#close-btn .icon {
+    display: none; /* O 'X' começa escondido */
+    line-height: 1;
+}
+
+/* 4. Estilo do botão quando está DESATIVADO (durante a contagem) */
+#close-btn.disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background-color: #d32f2f; /* Cor vermelha para indicar "pare" */
+}
+#close-btn.disabled .timer {
+    display: block; /* Mostra o timer */
+}
+#close-btn.disabled .icon {
+    display: none; /* Esconde o 'X' */
+}
+
+/* 5. Estilo do botão quando está ATIVADO (após 10s) */
+#close-btn.enabled {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+#close-btn.enabled .timer {
+    display: none; /* Esconde o timer */
+}
+#close-btn.enabled .icon {
+    display: block; /* Mostra o 'X' */
+}
+#close-btn.enabled:hover {
+    transform: scale(1.1);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#map-section {
+    padding: 100px 0;
+    background-color: #001a35; /* Um azul ainda mais escuro para contraste */
+    text-align: center;
+}
+
+#map-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+#map-section .subtitle {
+    font-size: 1.1em;
+    color: #a9c1d9;
+    margin-bottom: 50px;
+}
+
+.world-map {
+    position: relative; /* Essencial para posicionar os pontos dentro dele */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.world-map img {
+    width: 100%;
+    opacity: 0.7; /* Deixa o mapa um pouco mais sutil */
+}
+
+/* O ponto de luz no mapa */
+.map-point {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #7FDBFF; /* Cor azul clara do tema */
+    border-radius: 50%;
+    transform: translate(-50%, -50%); /* Centraliza o ponto na coordenada exata */
+    box-shadow: 0 0 15px 5px rgba(127, 219, 255, 0.5);
+    
+    /* Animação de pulso */
+    animation: pulse 2s infinite;
+}
+
+/* Animação que faz o ponto pulsar */
+@keyframes pulse {
+    0% {
+        transform: scale(0.95) translate(-50%, -50%);
+        box-shadow: 0 0 0 0 rgba(127, 219, 255, 0.7);
+    }
+    70% {
+        transform: scale(1.1) translate(-50%, -50%);
+        box-shadow: 0 0 10px 15px rgba(127, 219, 255, 0);
+    }
+    100% {
+        transform: scale(0.95) translate(-50%, -50%);
+        box-shadow: 0 0 0 0 rgba(127, 219, 255, 0);
+    }
+}
+
+/* A caixa de informação (tooltip) */
+.map-point .tooltip {
+    position: absolute;
+    bottom: 150%; /* Posição acima do ponto */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    color: #001f3f;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    white-space: nowrap; /* Impede que o nome quebre a linha */
+    
+    /* Escondido por padrão */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+/* Mostra o tooltip quando passamos o mouse sobre o ponto */
+.map-point:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.world-map svg { /* Mude de 'img' para 'svg' aqui */
+    width: 100%;
+    opacity: 0.7; /* Deixa o mapa um pouco mais sutil */
+}
+
+.world-map img {
+    width: 100%;
+    
+    /* FILTRO MÁGICO:
+      - invert(1): Transforma o cinza claro em um cinza escuro e o fundo branco em preto.
+      - grayscale(1): Garante que a imagem fique em preto e branco.
+      - brightness(1.8): Aumenta o brilho, fazendo o cinza escuro virar quase branco e o fundo preto sumir.
+      - contrast(3): Aumenta o contraste para deixar as bordas mais nítidas.
+    */
+    filter: invert(1) grayscale(1) brightness(1.8) contrast(3);
+}
+
+#sobre-section {
+    
+        padding: 160px 0; 
+    overflow: hidden;
+    
+    /* Fundo escuro com estrelas */
+    background-color: #0d1117;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+}
+
+.sobre-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* Coluna da Esquerda (Texto) */
+.sobre-content {
+    flex: 1;
+}
+
+.sobre-content h3 {
+    color: #7FDBFF;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.sobre-content h2 {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.sobre-content p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #a9c1d9;
+}
+
+/* Coluna da Direita (Imagem) */
+.sobre-image-wrapper {
+    flex: 1;
+    position: relative; /* Essencial para posicionar as bolhas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px; /* Ativa o efeito 3D no hover */
+}
+
+.author-photo {
+  width: 100%;
+    /* Reduzimos o tamanho máximo da foto para um visual mais refinado */
+    max-width: 420px; 
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    transition: transform 0.4s ease;
+}
+
+.author-photo:hover {
+    transform: rotateY(5deg) rotateX(3deg) scale(1.03);
+}
+
+/* Bolhas de Informação */
+.info-bubble {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 50px;
+    
+    /* Efeito de Vidro (Glassmorphism) */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+    animation: bobbing 5s infinite ease-in-out;
+}
+
+.info-bubble i {
+    color: #7FDBFF;
+    font-size: 1.2em;
+}
+
+.info-bubble span {
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* Animação de flutuação para as bolhas */
+@keyframes bobbing {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+
+/* AJUSTES PARA TELAS MENORES (RESPONSIVO) */
+@media (max-width: 992px) {
+    .sobre-container {
+        flex-direction: column; /* Coloca o texto em cima da imagem */
+    }
+    .sobre-content {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    .author-photo {
+        max-width: 300px;
+    }
+    .info-bubble {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    .info-bubble[style*="left: -40px"] { left: -10px; }
+    .info-bubble[style*="right: -50px"] { right: -10px; }
+    .info-bubble[style*="left: -20px"] { left: 5px; }
+}
+
+#livro-section {
+    padding: 120px 0;
+    /* Reutiliza o mesmo fundo estrelado da seção do autor para consistência */
+    background-color: #0d1117;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+    background-size: 550px 550px, 350px 350px;
+    background-position: 0 0, 40px 60px;
+}
+
+.livro-container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+/* Coluna da Esquerda (Texto) */
+.livro-content {
+    flex: 1;
+    max-width: 450px;
+}
+
+.livro-content h2 {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.livro-content p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #a9c1d9;
+}
+
+/* Coluna da Direita (Galeria) */
+.livro-gallery {
+    flex: 1.2; /* Dá um pouco mais de espaço para as imagens */
+    position: relative;
+    min-height: 500px; /* Garante espaço para as imagens flutuantes */
+}
+
+.gallery-item {
+    position: absolute;
+    border-radius: 16px;
+    overflow: hidden; /* Garante que a imagem não vaze das bordas arredondadas */
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: float 6s infinite ease-in-out;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05) !important; /* Adicionado !important para sobrepor a animação */
+    box-shadow: 0 0 40px rgba(127, 219, 255, 0.4);
+    z-index: 10 !important; /* Traz a imagem para frente ao passar o mouse */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o container sem distorcer */
+    display: block;
+}
+
+/* Animação de flutuação suave */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* AJUSTES PARA TELAS MENORES (RESPONSIVO) */
+@media (max-width: 992px) {
+    .livro-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .livro-gallery {
+        width: 100%;
+        margin-top: 60px;
+        min-height: 400px; /* Reduz a altura no mobile */
+    }
+}
+@media (max-width: 576px) {
+    .livro-gallery {
+        transform: scale(0.9); /* Reduz um pouco a galeria para caber */
+        min-height: 350px;
+        margin-top: 30px;
+    }
+}
+
+/* ======================================================= */
+/* ESTILOS DA SEÇÃO SOBRE O LIVRO (CORRIGIDO COM CSS GRID) */
+/* ======================================================= */
+#livro-section {
+    padding: 120px 0;
+    overflow: hidden; /* Previne barras de rolagem indesejadas */
+    background-color: #0d1117;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+    background-size: 550px 550px, 350px 350px;
+    background-position: 0 0, 40px 60px;
+}
+
+.livro-container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.livro-content {
+    flex: 1;
+    max-width: 450px;
+}
+
+.livro-content h2 { font-size: 3em; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+.livro-content p { font-size: 1.1em; line-height: 1.8; color: #a9c1d9; }
+
+/* Coluna da Direita (Galeria) - A MÁGICA ACONTECE AQUI */
+.livro-gallery {
+    flex: 1.2;
+    display: grid;
+    /* Cria uma grade invisível de 5 colunas e 5 linhas */
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 15px; /* Espaçamento entre os itens da grade */
+    
+    /* ISSO RESOLVE A SOBREPOSIÇÃO: Força o container a ter uma proporção */
+    aspect-ratio: 4 / 3;
+}
+
+.gallery-item {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: float 6s infinite ease-in-out;
+}
+
+/* Define a posição de cada imagem na grade */
+.gallery-item.item-1 { grid-column: 1 / 4; grid-row: 1 / 4; }
+.gallery-item.item-2 { grid-column: 4 / 6; grid-row: 2 / 4; }
+.gallery-item.item-3 { grid-column: 1 / 3; grid-row: 4 / 6; z-index: 2; }
+.gallery-item.item-4 { grid-column: 3 / 6; grid-row: 4 / 6; }
+
+.gallery-item:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 0 40px rgba(127, 219, 255, 0.4);
+    z-index: 10 !important;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+/* RESPONSIVO */
+@media (max-width: 992px) {
+    .livro-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .livro-gallery {
+        width: 100%;
+        margin-top: 60px;
+        aspect-ratio: 1 / 1; /* Deixa o grid quadrado no modo tablet/celular */
+    }
+}
+/* ======================================================= */
+/* ESTILOS DA SEÇÃO SOBRE O LIVRO (Layout Geométrico Final) */
+/* ======================================================= */
+#livro-section {
+    padding: 120px 0;
+    overflow: hidden;
+    background-color: #0d1117;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+    background-size: 550px 550px, 350px 350px;
+    background-position: 0 0, 40px 60px;
+}
+
+.livro-container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.livro-content {
+    flex: 1;
+    max-width: 450px;
+}
+
+.livro-content h2 { font-size: 3em; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+.livro-content p { font-size: 1.1em; line-height: 1.8; color: #a9c1d9; }
+
+.livro-gallery {
+    flex: 1.2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* ESSA REGRA GARANTE OS 33.3% de altura para cada linha na segunda coluna */
+    grid-template-rows: repeat(3, 1fr); 
+    gap: 15px;
+    aspect-ratio: 5 / 4; 
+}
+
+.gallery-item {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    /* ANIMAÇÃO ATUALIZADA para não causar sobreposição */
+    animation: subtle-pulse 8s infinite ease-in-out;
+}
+
+.gallery-item.item-1 { grid-column: 1 / 2; grid-row: 1 / 4; } 
+.gallery-item.item-2 { grid-column: 2 / 3; grid-row: 1 / 2; } 
+.gallery-item.item-3 { grid-column: 2 / 3; grid-row: 2 / 3; } 
+.gallery-item.item-4 { grid-column: 2 / 3; grid-row: 3 / 4; } 
+
+.gallery-item:hover {
+    transform: scale(1.03) !important; /* Aumenta um pouco menos no hover */
+    box-shadow: 0 0 40px rgba(127, 219, 255, 0.4);
+    z-index: 10 !important;
+    animation-play-state: paused; /* Pausa a animação de pulso durante o hover */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ANIMAÇÃO SUBSTITUÍDA: De 'float' para 'subtle-pulse' */
+@keyframes subtle-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); } /* Aumenta a imagem em 2% */
+    100% { transform: scale(1); }
+}
+
+/* RESPONSIVO (Sem alterações, continua funcional) */
+@media (max-width: 992px) {
+    .livro-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .livro-gallery {
+        width: 100%;
+        margin-top: 60px;
+        grid-template-columns: 1fr; 
+        grid-template-rows: repeat(4, auto);
+        aspect-ratio: auto;
+    }
+    .gallery-item.item-1,
+    .gallery-item.item-2,
+    .gallery-item.item-3,
+    .gallery-item.item-4 {
+        grid-column: auto;
+        grid-row: auto;
+        min-height: 250px;
+    }
+}
+
+/* ======================================================= */
+/* ESTILOS DO NOVO RODAPÉ PROFISSIONAL */
+/* ======================================================= */
+#main-footer {
+    background-color: #0d1117; /* Fundo escuro e sólido */
+    padding: 80px 0 20px 0;
+    color: #a9c1d9;
+}
+
+/* Linha 1: Topo */
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 220px;
+}
+
+.footer-col h2 {
+    color: #fff;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+.footer-col h4 {
+    color: #fff;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-col p { line-height: 1.7; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul a {
+    color: #a9c1d9;
+    text-decoration: none;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+.footer-col ul a:hover {
+    color: #7FDBFF;
+    padding-left: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+.social-icons a {
+    color: #fff;
+    font-size: 1.2em;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.social-icons a:hover {
+    background-color: #7FDBFF;
+    color: #0d1117;
+    transform: translateY(-3px);
+}
+
+/* Linha 2: Mapa */
+.footer-map {
+    margin: 50px 0;
+}
+.footer-map iframe {
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+    /* DICA PROFISSIONAL: Filtro para deixar o mapa com tema escuro */
+    filter: grayscale(1) invert(0.9);
+}
+
+/* Linha 3: Logos */
+.footer-logos {
+    text-align: center;
+    padding: 50px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-logos h3 {
+    font-size: 1.5em;
+    color: #fff;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.logo-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+.logo-grid img {
+    max-height: 45px; /* Altura máxima para alinhar os logos */
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    /* DICA PROFISSIONAL: Filtro para deixar todos os logos brancos */
+    /* filter: grayscale(1) brightness(10); */
+}
+.logo-grid img:hover {
+    opacity: 1;
+}
+
+/* Linha Final: Copyright */
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-bottom p {
+    font-size: 0.9em;
+    color: #a9c1d9;
+}
+
+/* ESTILO DO BANNER "HERO" (ATUALIZADO PARA VÍDEO) */
+.hero {
+    position: relative; /* Essencial para posicionar o vídeo e o overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    padding-top: 80px;
+    overflow: hidden; /* Garante que nada vaze para fora da seção */
+    
+    /* REMOVEMOS O FUNDO GRADIENTE DAQUI */
+}
+
+/* Adiciona uma camada escura sobre o vídeo para legibilidade do texto */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 25, 50, 0.5); /* Azul escuro com 50% de transparência */
+    z-index: 0;
+}
+
+/* Garante que o conteúdo fique ACIMA da camada escura */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* ESTILO DO VÍDEO DE FUNDO */
+#hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* Coloca o vídeo atrás de TUDO */
+    object-fit: cover; /* Garante que o vídeo cubra a área sem distorcer */
+}
+
+#main-footer {
+    position: relative; /* Essencial para posicionar o vídeo e o overlay */
+    padding: 80px 0 20px 0;
+    color: #a9c1d9;
+    overflow: hidden; /* Garante que o vídeo não vaze */
+    
+    /* REMOVEMOS o background-color daqui */
+}
+
+/* ======================================================= */
+/* ESTILOS DO RODAPÉ (COM VÍDEO MP4 ROTACIONADO) */
+/* ======================================================= */
+#main-footer {
+    position: relative; /* O PAI de tudo */
+    padding: 80px 0 20px 0;
+    color: #a9c1d9;
+    overflow: hidden; /* MUITO IMPORTANTE para conter o vídeo rotacionado */
+}
+
+/* Camada de fundo que contém o vídeo */
+.footer-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* O VÍDEO DENTRO DA CAMADA DE FUNDO */
+#footer-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    /* A MÁGICA PARA ROTACIONAR E COBRIR A TELA:
+       - 'translate' centraliza o vídeo.
+       - 'rotate' aplica a rotação.
+       - 'scale' aumenta o tamanho para garantir que, mesmo rotacionado, ele cubra toda a área.
+    */
+    transform:  scale(1.8);
+
+    /* Garante que o vídeo nunca seja menor que a tela */
+    min-width: 100vh;
+    min-height: 100vw;
+    object-fit: cover;
+}
+
+/* O overlay escuro para legibilidade */
+.footer-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(6, 17, 28, 0.85);
+}
+
+/* O container com todo o conteúdo do rodapé */
+#main-footer .container {
+    position: relative;
+    z-index: 1; /* Fica na frente do fundo */
+}
+
+
+/* --- O RESTANTE DOS ESTILOS DO CONTEÚDO (sem alterações) --- */
+.footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; padding-bottom: 50px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.footer-col { flex: 1; min-width: 220px; }
+.footer-col h2 { color: #fff; font-size: 1.8em; margin-bottom: 10px; }
+.footer-col h4 { color: #fff; font-size: 1.1em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+.footer-col p { line-height: 1.7; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul a { color: #a9c1d9; text-decoration: none; transition: color 0.3s ease, padding-left 0.3s ease; }
+.footer-col ul a:hover { color: #7FDBFF; padding-left: 5px; }
+.social-icons { display: flex; gap: 15px; }
+.social-icons a { color: #fff; font-size: 1.2em; background-color: rgba(255, 255, 255, 0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: background-color 0.3s ease, transform 0.3s ease; }
+.social-icons a:hover { background-color: #7FDBFF; color: #0d1117; transform: translateY(-3px); }
+.footer-map { margin: 50px 0; }
+.footer-map iframe { width: 100%; height: 350px; border-radius: 10px; filter: grayscale(1) invert(0.9); }
+.footer-logos { text-align: center; padding: 50px 0; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.footer-logos h3 { font-size: 1.5em; color: #fff; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; }
+.logo-row { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 40px; margin-bottom: 30px; }
+.logo-grid img { max-height: 45px; opacity: 0.7; transition: opacity 0.3s ease; ; }
+.logo-grid img:hover { opacity: 1; }
+.footer-bottom { text-align: center; padding-top: 30px; margin-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.footer-bottom p { font-size: 0.9em; color: #a9c1d9; }
+@media (max-width: 768px) { .footer-top { flex-direction: column; text-align: center; } .social-icons { justify-content: center; } }
+
+/* ======================================================= */
+/* ESTILOS DA SEÇÃO AUDIOBOOK (VERSÃO FINAL COM ABAS) */
+/* ======================================================= */
+#audiobook-section {
+    position: relative;
+    padding: 120px 0;
+    overflow: hidden;
+}
+
+/* O vídeo de fundo e o overlay continuam iguais */
+#audiobook-section .section-bg-video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -2; object-fit: cover; }
+#audiobook-section::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(6, 17, 28, 0.7); z-index: -1; }
+
+.audiobook-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+/* Lado Esquerdo: Player e Abas */
+.audiobook-player-area {
+    flex: 1.2; /* Dá mais espaço para o vídeo */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.video-wrapper {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background-color: #000;
+}
+#intro-player {
+    width: 100%;
+    height: 100%;
+}
+
+/* Navegação por Abas */
+.intro-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+.intro-nav-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.intro-nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #7FDBFF;
+}
+.intro-nav-btn.active {
+    background-color: #7FDBFF;
+    color: #0d1117;
+    font-weight: bold;
+    transform: scale(1.05);
+}
+
+/* Lado Direito: Conteúdo */
+.audiobook-content { flex: 1; }
+.audiobook-content h3 { color: #7FDBFF; font-weight: 400; margin-bottom: 10px; }
+.audiobook-content h2 { font-size: 2.8em; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+.audiobook-content p { font-size: 1.1em; line-height: 1.8; color: #a9c1d9; margin-bottom: 30px; }
+
+/* Seletor de Idioma (mesmo estilo de antes) */
+.language-switcher { display: flex; gap: 10px; margin-bottom: 30px; }
+.lang-switch-btn { background-color: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Poppins', sans-serif; transition: background-color 0.3s ease; }
+.lang-switch-btn:hover { background-color: rgba(255, 255, 255, 0.2); }
+.lang-switch-btn.active { background-color: #7FDBFF; color: #0d1117; font-weight: bold; }
+
+/* Estilo para o Botão Bilíngue */
+.audiobook-content .cta-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 30px;
+    line-height: 1.4;
+}
+.sub-lang {
+    font-size: 0.7em;
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+    .audiobook-container { flex-direction: column; }
+    .audiobook-content { text-align: center; margin-top: 40px; }
+    .language-switcher { justify-content: center; }
+}
+@media (max-width: 576px) {
+    .intro-nav { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ======================================================= */
+/* ESTILOS DA SEÇÃO SOBRE O LIVRO (COM SLIDER) */
+/* ======================================================= */
+#livro-section {
+    padding: 120px 0;
+    overflow: hidden;
+    background-color: #0d1117;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+    background-size: 550px 550px, 350px 350px;
+    background-position: 0 0, 40px 60px;
+}
+
+.livro-container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.livro-content {
+    flex: 1;
+    max-width: 450px;
+}
+
+.livro-content h2 { font-size: 3em; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+.livro-content p { font-size: 1.1em; line-height: 1.8; color: #a9c1d9; }
+
+/* Wrapper da galeria-slider */
+.livro-gallery-slider {
+    flex: 1.2;
+    position: relative;
+    max-width: 500px; /* Limita a largura máxima do slider */
+}
+
+/* Estilo do container do Swiper */
+.swiper.livro-swiper {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Deixa o slider quadrado */
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+}
+
+.swiper-slide {
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Customização das setas de navegação */
+.livro-swiper .swiper-button-next,
+.livro-swiper .swiper-button-prev {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+.livro-swiper .swiper-button-next:hover,
+.livro-swiper .swiper-button-prev:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.livro-swiper .swiper-button-next::after,
+.livro-swiper .swiper-button-prev::after {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Customização da paginação (bolinhas) */
+.livro-swiper .swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.5);
+    width: 10px;
+    height: 10px;
+}
+.livro-swiper .swiper-pagination-bullet-active {
+    background: #7FDBFF;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+    .livro-container { flex-direction: column; text-align: center; }
+    .livro-gallery-slider { width: 100%; max-width: 400px; margin-top: 60px; }
+}
+
+/* ======================================================= */
+/* AJUSTES FINAIS PARA TELAS MENORES (RESPONSIVO) */
+/* ======================================================= */
+
+/* As regras dentro deste bloco só serão aplicadas em telas com largura máxima de 768px (tablets e celulares) */
+@media (max-width: 768px) {
+
+    /* --- AJUSTES DO HERO BANNER --- */
+
+    /* Garante que o conteúdo não cole nas bordas */
+    .hero-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Reduz drasticamente o título do livro */
+    .book-title {
+        font-size: 3.2em; /* Estava 5em */
+        margin-bottom: 25px;
+    }
+
+    /* Reduz os títulos secundários */
+    .hero-content h2 {
+        font-size: 1.2em;
+    }
+    .hero-content h3 {
+        font-size: 1em;
+    }
+
+    /* Ajusta a contagem regressiva para caber na tela */
+    #countdown {
+        gap: 10px; /* Diminui o espaço entre os blocos */
+        transform: scale(0.9); /* Reduz o tamanho geral do contador */
+    }
+    .time-unit {
+        padding: 10px 15px; /* Diminui o espaçamento interno */
+    }
+    .time-unit span {
+        font-size: 2.2em; /* Diminui o tamanho dos números */
+    }
+    .time-unit small {
+        font-size: 0.8em;
+    }
+
+    /* Ajusta o contador de downloads e o botão */
+    .download-counter {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+    .cta-button {
+        font-size: 1em;
+        padding: 12px 28px;
+    }
+}
+
+
+/* Ajustes adicionais para celulares bem pequenos */
+@media (max-width: 480px) {
+    .book-title {
+        font-size: 2.5em; /* Ainda menor para telas muito estreitas */
+    }
+
+    #countdown {
+        transform: scale(0.75); /* Reduz ainda mais o contador */
+    }
+}
+
+/* ======================================================= */
+/* ESTILOS DO HEADER RESPONSIVO (MENU HAMBURGER) */
+/* ======================================================= */
+
+/* --- Estilos para Desktop (Garantindo que nada quebre) --- */
+.main-menu {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Mantém o espaçamento entre NAV e Seletor de Idioma */
+}
+
+.hamburger-btn {
+    display: none; /* Escondido no desktop */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001; /* Garante que fique acima de outros elementos */
+}
+
+.hamburger-btn .line {
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+}
+
+
+/* --- Estilos para Mobile (Telas com largura máxima de 768px) --- */
+@media (max-width: 768px) {
+    /* Mostra o botão hamburger */
+    .hamburger-btn {
+        display: flex;
+    }
+
+    /* Esconde o menu de navegação tradicional */
+    .main-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(6, 17, 28, 0.9); /* Fundo escuro com transparência */
+        backdrop-filter: blur(15px);
+        
+        /* Esconde o menu fora da tela por padrão */
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        
+        /* Reorganiza os itens verticalmente */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+    }
+
+    /* Mostra o menu quando ele tiver a classe 'open' (adicionada via JS) */
+    .main-menu.open {
+        transform: translateX(0);
+    }
+
+    /* Estilo dos links dentro do menu mobile */
+    .main-menu nav ul {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .main-menu nav a {
+        font-size: 1.5em; /* Aumenta o tamanho da fonte para facilitar o toque */
+    }
+    
+    .main-menu .language-selector {
+        margin-top: 20px;
+    }
+
+    /* Animação do botão hamburger para virar um "X" */
+    .hamburger-btn.active .line:nth-child(1) {
+        transform: rotate(45deg);
+    }
+    .hamburger-btn.active .line:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    .hamburger-btn.active .line:nth-child(3) {
+        transform: rotate(-45deg);
+    }
+}
+
+/* ======================================================= */
+/* ESTILOS DO HEADER RESPONSIVO (MENU HAMBURGER) */
+/* ======================================================= */
+
+/* --- Estilos para Desktop (Garantindo que nada quebre) --- */
+.main-menu {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Mantém o espaçamento entre NAV e Seletor de Idioma */
+}
+
+.hamburger-btn {
+    display: none; /* Escondido no desktop */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001; /* Garante que fique acima de outros elementos */
+}
+
+.hamburger-btn .line {
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+}
+
+
+/* --- Estilos para Mobile (Telas com largura máxima de 768px) --- */
+@media (max-width: 768px) {
+    /* Mostra o botão hamburger */
+    .hamburger-btn {
+        display: flex;
+    }
+
+    /* Esconde o menu de navegação tradicional */
+    .main-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(6, 17, 28, 0.9); /* Fundo escuro com transparência */
+        backdrop-filter: blur(15px);
+        
+        /* Esconde o menu fora da tela por padrão */
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        
+        /* Reorganiza os itens verticalmente */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+    }
+
+    /* Mostra o menu quando ele tiver a classe 'open' (adicionada via JS) */
+    .main-menu.open {
+        transform: translateX(0);
+    }
+
+    /* Estilo dos links dentro do menu mobile */
+    .main-menu nav ul {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .main-menu nav a {
+        font-size: 1.5em; /* Aumenta o tamanho da fonte para facilitar o toque */
+    }
+    
+    .main-menu .language-selector {
+        margin-top: 20px;
+    }
+
+    /* Animação do botão hamburger para virar um "X" */
+    .hamburger-btn.active .line:nth-child(1) {
+        transform: rotate(45deg);
+    }
+    .hamburger-btn.active .line:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    .hamburger-btn.active .line:nth-child(3) {
+        transform: rotate(-45deg);
+    }
+}
+
