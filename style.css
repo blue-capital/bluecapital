@@ -810,14 +810,7 @@ nav a:hover::after {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
-.logo-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 40px;
-    margin-bottom: 30px;
-}
+
 .logo-grid img {
     max-height: 45px; /* Altura máxima para alinhar os logos */
     opacity: 0.7;
@@ -918,22 +911,22 @@ nav a:hover::after {
 }
 
 /* O VÍDEO DENTRO DA CAMADA DE FUNDO */
+
 #footer-video {
     position: absolute;
     top: 50%;
     left: 50%;
-    
-    /* A MÁGICA PARA ROTACIONAR E COBRIR A TELA:
-       - 'translate' centraliza o vídeo.
-       - 'rotate' aplica a rotação.
-       - 'scale' aumenta o tamanho para garantir que, mesmo rotacionado, ele cubra toda a área.
-    */
-    transform:  scale(1.8);
 
-    /* Garante que o vídeo nunca seja menor que a tela */
-    min-width: 100vh;
-    min-height: 100vw;
-    object-fit: cover;
+    /* Ajuste Chave:
+       1. Removemos min-width/min-height que podem causar conflitos.
+       2. Definimos width/height para 100% do contêiner pai.
+       3. Aumentamos o 'scale' de 1.8 para 2.5.
+    */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que o vídeo cubra a área sem distorcer */
+    transform: translate(-50%, -50%)  scale(2.5);
+    
 }
 
 /* O overlay escuro para legibilidade */
@@ -971,8 +964,24 @@ nav a:hover::after {
 .footer-map iframe { width: 100%; height: 350px; border-radius: 10px; filter: grayscale(1) invert(0.9); }
 .footer-logos { text-align: center; padding: 50px 0; border-top: 1px solid rgba(255, 255, 255, 0.1); }
 .footer-logos h3 { font-size: 1.5em; color: #fff; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; }
-.logo-row { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 40px; margin-bottom: 30px; }
-.logo-grid img { max-height: 45px; opacity: 0.7; transition: opacity 0.3s ease; ; }
+.logo-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* Dobramos o espaçamento entre os logos para 160px (de 80px) */
+    gap: 90px; 
+    margin-bottom: 30px;
+}
+.logo-grid img {
+    /* Aumentamos a altura máxima para 70px (de 45px) */
+    max-height: 150px; 
+    /* Garante que a largura se ajuste proporcionalmente */
+    width: auto; 
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    filter: grayscale(1) brightness(10); /* Mantemos o filtro para logos brancos */
+}
 .logo-grid img:hover { opacity: 1; }
 .footer-bottom { text-align: center; padding-top: 30px; margin-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
 .footer-bottom p { font-size: 0.9em; color: #a9c1d9; }
@@ -1432,3 +1441,86 @@ nav a:hover::after {
     }
 }
 
+/* ======================================================= */
+/* ESTILOS DA SEÇÃO AUDIOBOOK (ATUALIZADO COM YOUTUBE) */
+/* ======================================================= */
+#audiobook-section {
+    position: relative;
+    padding: 120px 0;
+    overflow: hidden;
+}
+
+#audiobook-section .section-bg-video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -2; object-fit: cover; }
+#audiobook-section::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(6, 17, 28, 0.7); z-index: -1; }
+
+.audiobook-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+/* Lado Esquerdo: Player e Abas */
+.audiobook-player-area {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Estilo do Wrapper do Vídeo (agora para o iframe) */
+.video-wrapper {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background-color: #000;
+}
+.video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* MUDANÇA: Navegação por Abas com 3 colunas */
+.intro-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Mudou de 4 para 3 */
+    gap: 10px;
+}
+.intro-nav-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.intro-nav-btn:hover { background-color: rgba(255, 255, 255, 0.2); border-color: #7FDBFF; }
+.intro-nav-btn.active { background-color: #7FDBFF; color: #0d1117; font-weight: bold; transform: scale(1.05); }
+
+/* Lado Direito: Conteúdo */
+.audiobook-content { flex: 1; }
+.audiobook-content h3 { color: #7FDBFF; font-weight: 400; margin-bottom: 10px; }
+.audiobook-content h2 { font-size: 2.8em; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+.audiobook-content p { font-size: 1.1em; line-height: 1.8; color: #a9c1d9; margin-bottom: 30px; }
+.language-switcher { display: flex; gap: 10px; margin-bottom: 30px; }
+.lang-switch-btn { background-color: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); padding: 10px 20px; border-radius: 5px; cursor: pointer; font-family: 'Poppins', sans-serif; transition: background-color 0.3s ease; }
+.lang-switch-btn:hover { background-color: rgba(255, 255, 255, 0.2); }
+.lang-switch-btn.active { background-color: #7FDBFF; color: #0d1117; font-weight: bold; }
+.audiobook-content .cta-button { display: flex; flex-direction: column; align-items: center; padding: 12px 30px; line-height: 1.4; }
+.sub-lang { font-size: 0.7em; opacity: 0.8; font-weight: 400; }
+
+/* Responsivo */
+@media (max-width: 992px) {
+    .audiobook-container { flex-direction: column; }
+    .audiobook-content { text-align: center; margin-top: 40px; }
+    .language-switcher { justify-content: center; }
+}
+@media (max-width: 576px) {
+    .intro-nav { grid-template-columns: 1fr; } /* Em telas muito pequenas, empilha os 3 botões */
+}

@@ -171,68 +171,97 @@ document.addEventListener('DOMContentLoaded', () => {
             },
         });
     }
-    // =======================================================
-    // BLOCO 8: PLAYER DE AUDIOBOOK COM ABAS E I18N (CORRIGIDO)
-    // =======================================================
+   // =======================================================
+// BLOCO 8: PLAYER DE AUDIOBOOK (ATUALIZADO COM YOUTUBE)
+// =======================================================
+const audiobookSection = document.getElementById('audiobook-section');
+if (audiobookSection) {
+    
+    // Dicionário com todas as traduções de TEXTO
     const translations = {
-        br: { audiobookSubTitle: "Introdução Sonora", audiobookTitle: "Ouça o início da jornada", audiobookDescription: "Mergulhe na atmosfera de 'Blue Capital' com os capítulos introdutórios narrados. Sinta a maré da história antes mesmo de virar a primeira página.", intro1: "Apresentação do livro", intro2: "Apresentação dos Capítulos", intro3: "Corrente de oportunidades", intro4: "A introdução do livro", ctaButton: "Escutar o primeiro capítulo", },
+         br: { audiobookSubTitle: "Introdução Sonora", audiobookTitle: "Ouça o início da jornada", audiobookDescription: "Mergulhe na atmosfera de 'Blue Capital' com os capítulos introdutórios narrados. Sinta a maré da história antes mesmo de virar a primeira página.", intro1: "Apresentação do livro", intro2: "Apresentação dos Capítulos", intro3: "Corrente de oportunidades", intro4: "A introdução do livro", ctaButton: "Escutar o primeiro capítulo", },
         en: { audiobookSubTitle: "Sound Introduction", audiobookTitle: "Listen to the journey's beginning", audiobookDescription: "Immerse yourself in the atmosphere of 'Blue Capital' with the narrated introductory chapters. Feel the tide of the story before even turning the first page.", intro1: "Book presentation", intro2: "Presentation of Chapters", intro3: "Chain of opportunities", intro4: "The introduction of the book", ctaButton: "Listen to the first chapter", },
         es: { audiobookSubTitle: "Introducción Sonora", audiobookTitle: "Escucha el comienzo del viaje", audiobookDescription: "Sumérgete en la atmósfera de 'Blue Capital' con los capítulos introductorios narrados. Siente la marea de la historia incluso antes de pasar la primera página.", intro1: "Presentación del libro", intro2: "Presentación de Capítulos", intro3: "Cadena de oportunidades", intro4: "La introducción del libro", ctaButton: "Escuchar el primer capítulo", },
         ch: { audiobookSubTitle: "声音介绍", audiobookTitle: "聆听旅程的开始", audiobookDescription: "沉浸在《蓝色资本》的氛围中，聆听叙述的介绍性章节。在翻开第一页之前，感受故事的潮流。", intro1: "书籍介绍", intro2: "章节介绍", intro3: "机会链", intro4: "本书简介", ctaButton: "收听第一章", }
+   };
+
+    // NOVO: Dicionário com os IDs dos vídeos do YouTube
+    // Estrutura: [intro1, intro2, intro3]
+    const introVideoIds = {
+        br: ["f3kWbhhF2O4", "SA5zZhkf90k", "oWARfMASSlY"],
+        en: ["T51bKsl3mSQ", "fsO0BWSjtls", "5J0qqMsaoog"],
+        es: ["Cmf9UIjGDgc", "cEpoM0e4R90", "1hYtGQGxU84"],
+        ch: ["lD4P2_fNxeA", "1e-piSPhL28", "_oaQx0oQWdg"]
     };
 
-    const audiobookSection = document.getElementById('audiobook-section');
-    if (audiobookSection) {
-        const langButtons_audiobook = audiobookSection.querySelectorAll('#language-switcher .lang-switch-btn');
-        const introNavButtons = audiobookSection.querySelectorAll('#intro-nav .intro-nav-btn');
-        const videoPlayer = audiobookSection.querySelector('#intro-player');
-        const videoSource = videoPlayer.querySelector('source');
-        const elementsToTranslate = audiobookSection.querySelectorAll('[data-key]');
-        let currentLang = 'br';
-        let currentIndex = '1';
+    // Selecionando os elementos
+    const langButtons_audiobook = audiobookSection.querySelectorAll('#language-switcher .lang-switch-btn');
+    const introNavButtons = audiobookSection.querySelectorAll('#intro-nav .intro-nav-btn');
+    const videoWrapper = audiobookSection.querySelector('#intro-video-wrapper');
+    const elementsToTranslate = audiobookSection.querySelectorAll('[data-key]');
+    
+    let currentLang = 'br';
+    let currentIndex = 1; // Agora é um número, começando em 1
 
-        function updateTexts() {
-            const langPack = translations[currentLang];
-            elementsToTranslate.forEach(element => {
-                const key = element.dataset.key;
-                if (langPack[key]) {
-                    if (key === 'ctaButton') {
-                        const mainLangSpan = element.querySelector('.main-lang');
-                        const subLangSpan = element.querySelector('.sub-lang');
-                        mainLangSpan.textContent = langPack[key];
-                        subLangSpan.textContent = (currentLang !== 'br') ? translations.br[key] : "";
-                    } else {
-                        element.textContent = langPack[key];
-                    }
+    // Função para atualizar todos os textos
+    function updateTexts() {
+        const langPack = translations[currentLang];
+        elementsToTranslate.forEach(element => {
+            const key = element.dataset.key;
+            if (langPack[key]) {
+                if (key === 'ctaButton') {
+                    const mainLangSpan = element.querySelector('.main-lang');
+                    const subLangSpan = element.querySelector('.sub-lang');
+                    mainLangSpan.textContent = langPack[key];
+                    subLangSpan.textContent = (currentLang !== 'br') ? translations.br[key] : "";
+                } else {
+                    element.textContent = langPack[key];
                 }
-            });
-        }
-
-        function updateVideo() {
-            const newSource = `intro${currentIndex}${currentLang}.mp4`;
-            videoSource.setAttribute('src', newSource);
-            videoPlayer.load();
-        }
-
-        langButtons_audiobook.forEach(button => {
-            button.addEventListener('click', () => {
-                currentLang = button.dataset.lang;
-                langButtons_audiobook.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                updateTexts();
-                updateVideo();
-            });
+            }
         });
-
-        introNavButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                currentIndex = button.dataset.index;
-                introNavButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                updateVideo();
-            });
-        });
-
-        updateTexts();
     }
+
+    // Função para atualizar o vídeo
+    function updateVideo() {
+        // Pega o ID do vídeo certo (índice do array é N-1)
+        const videoId = introVideoIds[currentLang][currentIndex - 1];
+        
+        // Constrói o HTML do iframe
+        const iframeHTML = `
+            <iframe 
+                src="https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0" 
+                frameborder="0" 
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>`;
+        
+        // Insere o iframe no wrapper
+        videoWrapper.innerHTML = iframeHTML;
+    }
+
+    // Event Listeners para os botões de idioma
+    langButtons_audiobook.forEach(button => {
+        button.addEventListener('click', () => {
+            currentLang = button.dataset.lang;
+            langButtons_audiobook.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            updateTexts();
+            updateVideo(); // Troca o vídeo para o novo idioma
+        });
+    });
+
+    // Event Listeners para as abas de introdução
+    introNavButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            currentIndex = parseInt(button.dataset.index); // Converte "1", "2", "3" para número
+            introNavButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            updateVideo(); // Troca o vídeo para a nova intro
+        });
+    });
+    
+    // Inicialização
+    updateTexts(); // Carrega os textos corretos
+    updateVideo(); // Carrega o primeiro vídeo (Intro 1, PT-BR)
+}
 });
