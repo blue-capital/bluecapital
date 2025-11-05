@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0d1117;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.chapter-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.back-link {
+    display: inline-block;
+    color: #7FDBFF;
+    text-decoration: none;
+    margin-bottom: 30px;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+.back-link i { margin-right: 8px; }
+.back-link:hover { color: #fff; }
+
+.chapter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.chapter-header h1 { font-size: 2.5em; }
+
+/* MUDANÇA PRINCIPAL AQUI */
+.video-player-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* O iframe gerado pelo JS deve preencher o wrapper */
+.video-player-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.description {
+    text-align: center;
+    margin-top: 20px;
+    color: #a9c1d9;
+    font-size: 0.9em;
+}
+
+.language-switcher { display: flex; gap: 10px; }
+.lang-switch-btn { background-color: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); padding: 8px 15px; border-radius: 5px; cursor: pointer; font-family: 'Poppins', sans-serif; transition: background-color 0.3s ease; }
+.lang-switch-btn:hover { background-color: rgba(255, 255, 255, 0.2); }
+.lang-switch-btn.active { background-color: #7FDBFF; color: #0d1117; font-weight: bold; }
+
+@media (max-width: 600px) {
+    .chapter-header { flex-direction: column; align-items: flex-start; }
+    .chapter-header h1 { font-size: 2em; }
+}
