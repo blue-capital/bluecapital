@@ -352,7 +352,7 @@ nav a:hover::after {
 .sobre-content p {
     font-size: 1.1em;
     line-height: 1.8;
-    color: #a9c1d9;
+    color: #032548;
 }
 
 /* Coluna da Direita (Imagem) */
@@ -812,7 +812,7 @@ nav a:hover::after {
 }
 
 .logo-grid img {
-    max-height: 45px; /* Altura máxima para alinhar os logos */
+    max-height: 90px; /* Altura máxima para alinhar os logos */
     opacity: 0.7;
     transition: opacity 0.3s ease;
     /* DICA PROFISSIONAL: Filtro para deixar todos os logos brancos */

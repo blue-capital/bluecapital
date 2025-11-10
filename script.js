@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // =======================================================
     // BLOCO 1: LÓGICA DA CONTAGEM REGRESSIVA (HERO)
     // =======================================================
-    const launchDate = new Date('2025-11-10T00:00:00').getTime();
+    const launchDate = new Date('2026-01-09T00:00:00').getTime();
     const countdownInterval = setInterval(() => {
         const now = new Date().getTime();
         const distance = launchDate - now;
@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // =======================================================
     const updateDownloadCounter = () => {
         const startDate = new Date('2025-10-10T00:00:00').getTime();
-        const endDate = new Date('2025-11-10T00:00:00').getTime();
-        const startDownloads = 1000;
-        const endDownloads = 12489;
+        const endDate = new Date('2026-01-09T00:00:00').getTime();
+        const startDownloads = 30;
+        const endDownloads = 800;
         const now = new Date().getTime();
         if (now < startDate) { document.getElementById('downloads').innerText = startDownloads.toLocaleString('pt-BR'); return; }
         if (now > endDate) { document.getElementById('downloads').innerText = endDownloads.toLocaleString('pt-BR'); return; }
