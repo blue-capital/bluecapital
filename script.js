@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const startDate = new Date('2025-10-10T00:00:00').getTime();
         const endDate = new Date('2026-01-09T00:00:00').getTime();
         const startDownloads = 30;
-        const endDownloads = 800;
+        const endDownloads = 3000;
         const now = new Date().getTime();
         if (now < startDate) { document.getElementById('downloads').innerText = startDownloads.toLocaleString('pt-BR'); return; }
         if (now > endDate) { document.getElementById('downloads').innerText = endDownloads.toLocaleString('pt-BR'); return; }
@@ -264,4 +264,5 @@ if (audiobookSection) {
     updateTexts(); // Carrega os textos corretos
     updateVideo(); // Carrega o primeiro vídeo (Intro 1, PT-BR)
 }
+
 });
